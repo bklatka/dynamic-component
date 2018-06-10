@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "update_npm": "ng build --prod dynamic-component-lib && cd ./dist/dynamic-component-lib && npm pack && npm publish"
+    "update_npm": "ng build --prod dynamic-component-lib && cd ./dist/dynamic-component-lib && npm pack && npm publish",
+    "who": "npm whoami"
   },
   "private": true,
   "dependencies": {
