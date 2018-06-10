@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 
+import { TestComponent } from './test-component.component';
+
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+    <dc-generator [component]="componentToGenerate"></dc-generator>
+  `
 })
 export class AppComponent {
-  title = 'app';
+  componentToGenerate = TestComponent;
 }
