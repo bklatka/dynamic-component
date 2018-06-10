@@ -9,6 +9,7 @@ export class DynamicComponentLibService {
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
   generateComponent(component, viewRef: ViewContainerRef) {
+    if (!component) return;
     const factoryRef = this.componentFactoryResolver.resolveComponentFactory(
       component
     );
@@ -20,6 +21,10 @@ export class DynamicComponentLibService {
   }
 
   populateInputs(component, inputs) {
+    if (!inputs) {
+      return;
+    }
+
     Object.keys(inputs).forEach(inputKey => {
       if (inputs[inputKey]) {
         component.instance[inputKey] = inputs[inputKey];
