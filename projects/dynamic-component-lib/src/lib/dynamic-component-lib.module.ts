@@ -8,4 +8,4 @@ import { DynamicComponentLibComponent } from './dynamic-component-lib.component'
   declarations: [DynamicComponentLibComponent, DynamicHostDirective],
   exports: [DynamicComponentLibComponent]
 })
-export class DynamicComponentLibModule {}
+export class DCGeneratorModule {}

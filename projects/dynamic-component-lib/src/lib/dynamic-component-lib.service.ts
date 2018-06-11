@@ -1,15 +1,17 @@
 import { ComponentFactoryResolver, ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 
-import { DynamicComponentLibModule } from './dynamic-component-lib.module';
+import { DCGeneratorModule } from './dynamic-component-lib.module';
 
 @Injectable({
-  providedIn: DynamicComponentLibModule
+  providedIn: DCGeneratorModule
 })
 export class DynamicComponentLibService {
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
   generateComponent(component, viewRef: ViewContainerRef) {
-    if (!component) return;
+    if (!component) {
+      return;
+    }
     const factoryRef = this.componentFactoryResolver.resolveComponentFactory(
       component
     );

@@ -1,27 +1,53 @@
-# DynamicComponentApp
+# Dynamic component library
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
+Simple angular 6 component for generating components dynamicly.
 
-## Development server
+## Goal and motivation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+There are some other components that does quite the same, however this is a test project and DRY using same services over and over again.
+The pros for using this package is that is simple and have no dependency.
 
-## Code scaffolding
+## Usage
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1.  Import DCGeneratorModule into your application
 
-## Build
+```typescript
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, DynamicComponentLibModule],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+2.  Put your desired dynamic component in `entryComponents`
 
-## Running unit tests
+```typescript
+@NgModule({
+  ...
+  entryComponents: [myCustomComponent]
+  ...
+})
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3.  Use dc-generator component
 
-## Running end-to-end tests
+```typescript
+@Component({
+  selector: 'app-root',
+  template: `
+    <dc-generator 
+    [component]="componentToGenerate$ | async" 
+    [inputs]="componentInputs$ | async"></dc-generator>
+  `
+})
+export class AppComponent {
+  componentToGenerate$ = timer(3000).pipe(map(() => TestComponent));
+  componentInputs$ = timer(5000).pipe(map(() => ({ add: 'async text' })));
+}
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+| input       | info                              |
+| ----------- | --------------------------------- |
+| `component` | Component to be generated         |
+| `inputs`    | Object where keys are input names |

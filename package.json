@@ -1,6 +1,6 @@
 {
-  "name": "dynamic-component-app",
-  "version": "0.0.0",
+  "name": "ng-dynamic-component-app",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,8 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "update_npm": "ng build --prod dynamic-component-lib && cd ./dist/dynamic-component-lib && npm pack && npm publish",
-    "who": "npm whoami"
+    "generate-lib": "ng build --prod dynamic-component-lib && cd ./dist/dynamic-component-lib && npm pack"
   },
   "private": true,
   "dependencies": {
